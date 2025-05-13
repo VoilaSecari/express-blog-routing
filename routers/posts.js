@@ -10,14 +10,19 @@ let { posts } = require("../data/posts.js");
 // INDEX (base, indice insomma)
 // .get
 router.get("", (req, res) => {
-  res.json("Lettura sul blog dei posts.");
+  res.json({ posts });
 });
 
 // SHOW (QUI PER LO SPECIFICO POST)
 // .get
 router.get("/:id", (req, res) => {
-  const id = req.params.id;
-  res.json("Lettura sul blog del post " + id);
+  //creo costanti per navigare
+  const id = parseInt(req.params.id);
+  const post = posts.find((currentPost) => currentPost.id === id);
+  res.json({
+    description: "Lettura sul blog del post " + id,
+    data: post,
+  });
 });
 
 // STORE (qui si crea nuovo post)

@@ -13,6 +13,12 @@ const blogRouter = require("./routers/posts.js");
 // routers
 app.use("/posts", blogRouter);
 
+//basic
+app.get("/", (req, res) => {
+  res.json("Questa è la home del blog.");
+  console.log("lettura base");
+});
+
 //implementazione servizio public
 
 app.use(express.static("public"));
